@@ -61,11 +61,46 @@ export default function Me() {
       border: "border-yellow-500/20",
     },
   ];
+
+  const socials = [
+    {
+      icon: Github,
+      link: "https://github.com/EralKeskinkurt",
+      color: "text-foreground",
+    },
+    {
+      icon: Instagram,
+      link: "https://www.instagram.com/eral_web_dev/",
+      color: "text-pink-500",
+    },
+    {
+      icon: Linkedin,
+      link: "https://www.linkedin.com/in/eral-keskinkurt-255b27255/",
+      color: "text-blue-500",
+    },
+    {
+      icon: Coffee,
+      link: "https://buymeacoffee.com/eralkeskin",
+      color: "text-yellow-500",
+    },
+    {
+      icon: Facebook,
+      link: "https://www.facebook.com/eral.keskinkurt.94/",
+      color: "text-blue-600",
+    },
+    {
+      icon: Mail,
+      link: "mailto:eralkeskinkurt@gmail.com",
+      color: "text-red-500",
+    },
+  ];
+
   return (
-    <div className="flex items-center justify-center border border-border rounded-lg w-full h-full p-12">
-      <div className="flex flex-col md:flex-row items-start w-full h-full justify-start gap-18">
-        <div className="flex flex-col gap-4">
-          <div className="w-36 h-36 rounded-full overflow-hidden border border-border">
+    <div className="flex items-start justify-center border border-border rounded-lg w-full h-full p-6 md:p-12">
+      <div className="flex flex-col md:flex-row items-center md:items-start w-full justify-start gap-8 md:gap-16 overflow-hidden">
+        {/* Left side */}
+        <div className="flex flex-col items-center gap-4">
+          <div className="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden border border-border">
             <Image
               src="/eralkeskinkurt.png"
               width={500}
@@ -80,97 +115,51 @@ export default function Me() {
             <p>Turkey</p>
           </div>
 
-          <div className="flex flex-col items-center justify-start gap-4 mt-10">
-            <Link
-              href="https://github.com/EralKeskinkurt"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex flex-col items-center gap-1 text-sm text-foreground/70 hover:text-foreground transition"
-            >
-              <Github
-                size={25}
-                className="group-hover:text-foreground text-foreground/70 transition"
-              />
-            </Link>
-            <Link
-              href="https://www.instagram.com/eral_web_dev/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex flex-col items-center gap-1 text-sm text-foreground/70 hover:text-foreground transition"
-            >
-              <Instagram
-                size={25}
-                className="group-hover:text-purple-600 text-purple-600/70 transition"
-              />
-            </Link>
-            <Link
-              href="https://www.linkedin.com/in/eral-keskinkurt-255b27255/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex flex-col items-center gap-1 text-sm text-foreground/70 hover:text-foreground transition"
-            >
-              <Linkedin
-                size={25}
-                className="group-hover:text-blue-600 text-blue-600/70 transition"
-              />
-            </Link>
-            <Link
-              href="https://buymeacoffee.com/eralkeskin"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex flex-col items-center gap-1 text-sm text-foreground/70 hover:text-foreground transition"
-            >
-              <Coffee
-                size={25}
-                className="group-hover:text-amber-600 text-amber-600/70 transition"
-              />
-            </Link>
-            <Link
-              href="https://www.facebook.com/eral.keskinkurt.94/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex flex-col items-center gap-1 text-sm text-foreground/70 hover:text-foreground transition"
-            >
-              <Facebook
-                size={25}
-                className="group-hover:text-sky-600 text-sky-600/70 transition"
-              />
-            </Link>
-            <Link
-              href="mailto:eralkeskinkurt@gmail.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex flex-col items-center gap-1 text-sm text-foreground/70 hover:text-foreground transition"
-            >
-              <Mail
-                size={25}
-                className="group-hover:text-accent text-accent/70 transition"
-              />
-            </Link>
+          {/* Socials */}
+          <div className="flex md:flex-col items-center gap-5 md:gap-4 mt-4 md:mt-10 flex-wrap justify-center">
+            {socials.map((social, i) => {
+              const Icon = social.icon;
+
+              return (
+                <Link
+                  key={i}
+                  href={social.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`${social.color} hover:scale-110 transition`}
+                >
+                  <Icon size={24} />
+                </Link>
+              );
+            })}
           </div>
         </div>
 
-        <div className="flex flex-col gap-8 max-w-xl">
+        {/* Right side */}
+        <div className="flex flex-col gap-6 max-w-xl text-center md:text-left">
           <div>
-            <h1 className="text-3xl font-bold">Eral Keskinkurt</h1>
-            <p className="text-foreground/70 mt-1">
+            <h1 className="text-xl sm:text-2xl md:text-3xl font-bold">
+              Eral Keskinkurt
+            </h1>
+            <p className="text-sm md:text-base text-foreground/70 mt-1">
               Building modern web applications and scalable backend systems.
             </p>
           </div>
 
-          <p className="text-foreground/80">
+          <p className="text-sm md:text-base text-foreground/70 mt-1">
             I’m a full-stack developer focused on creating clean, scalable and
             maintainable software. I enjoy designing backend architectures, APIs
             and modern frontend interfaces using modern web technologies.
           </p>
 
-          <p className="text-foreground/70">
+          <p className="text-sm md:text-base text-foreground/70 mt-1">
             Currently working with <b>Next.js</b>, <b>NestJS</b>,{" "}
             <b>TypeScript</b> and <b>MySQL</b>. I enjoy building complete
             systems from database design to UI.
           </p>
 
-          <div className="flex flex-wrap gap-2 text-sm mt-2">
+          {/* Tech stack */}
+          <div className="flex flex-wrap gap-2 text-xs sm:text-sm mt-2">
             {techStack.map((tech) => (
               <span
                 key={tech.name}

@@ -81,22 +81,31 @@ function DeviceTypeIcon({ type }: { type?: string | null }) {
 
 function LoadingCard() {
   return (
-    <div className="w-60 rounded-xl border border-border/70 bg-background/85 p-2.5 shadow-lg backdrop-blur-sm">
-      <div className="flex items-center gap-2">
-        <div className="h-10 w-10 animate-pulse rounded-md bg-foreground/10" />
-        <div className="flex-1 space-y-2">
-          <div className="h-2 w-20 animate-pulse rounded bg-foreground/10" />
-          <div className="h-3 w-3/4 animate-pulse rounded bg-foreground/10" />
-        </div>
+    <>
+      {/* mobile skeleton */}
+      <div className="sm:hidden flex items-center gap-2 rounded-full border border-border/70 bg-background/85 px-3 py-1.5 shadow-lg backdrop-blur-sm max-w-[180px]">
+        <div className="h-4 w-4 animate-pulse rounded-full bg-foreground/15" />
+        <div className="h-2 w-20 animate-pulse rounded bg-foreground/15" />
       </div>
-      <div className="mt-2 h-1.5 w-full animate-pulse rounded-full bg-foreground/10" />
-    </div>
+
+      {/* desktop skeleton */}
+      <div className="hidden sm:block w-60 rounded-xl border border-border/70 bg-background/85 p-2 shadow-lg backdrop-blur-sm">
+        <div className="flex items-center gap-2">
+          <div className="h-10 w-10 animate-pulse rounded-md bg-foreground/10" />
+          <div className="flex-1 space-y-2">
+            <div className="h-2 w-20 animate-pulse rounded bg-foreground/10" />
+            <div className="h-3 w-3/4 animate-pulse rounded bg-foreground/10" />
+          </div>
+        </div>
+        <div className="mt-2 h-1.5 w-full animate-pulse rounded-full bg-foreground/10" />
+      </div>
+    </>
   );
 }
 
 function FloatingWrap({ children }: { children: React.ReactNode }) {
   return (
-    <div className="fixed bottom-3 right-3 z-50 sm:bottom-4 sm:right-4 opacity-90 hover:opacity-100 transition-opacity">
+    <div className="opacity-90 hover:opacity-100 transition-opacity">
       {children}
     </div>
   );
@@ -182,104 +191,116 @@ export default function NowPlaying() {
   const accent = data.accentColor ?? "var(--color-accent)";
   return (
     <FloatingWrap>
-      <article
-        aria-live="polite"
-        style={{ ["--np-accent" as string]: accent }}
-        className="group relative w-60 overflow-hidden rounded-xl border border-border/70 bg-background/85 p-2.5 shadow-lg backdrop-blur-sm"
-      >
-        <div
-          className="pointer-events-none absolute -right-14 -top-14 h-24 w-24 rounded-full blur-3xl"
+      <div className="sm:hidden flex items-center gap-2 rounded-full border border-border/70 bg-background/85 px-3 py-1.5 text-xs shadow-lg backdrop-blur-sm max-w-[180px]">
+        <Music2 size={12} />
+        <span className="truncate">{data.song}</span>
+        <span className="text-muted">çalıyor</span>
+      </div>
+      <div className="hidden sm:block">
+        <article
+          aria-live="polite"
           style={{
-            backgroundColor: `color-mix(in oklch, ${accent} 100%, transparent)`,
+            ["--np-accent" as string]: accent,
+            boxShadow: `0 0 20px ${accent}20`,
           }}
-        />
+          className="group relative hidden sm:block w-60 overflow-hidden rounded-xl border border-border/70 bg-background/85 p-2.5 shadow-lg backdrop-blur-sm"
+        >
+          <div
+            className="pointer-events-none absolute -right-14 -top-14 h-24 w-24 rounded-full blur-3xl"
+            style={{
+              backgroundColor: `color-mix(in oklch, ${accent} 100%, transparent)`,
+            }}
+          />
 
-        <div className="relative flex items-center gap-2">
-          <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-md border border-border/60">
-            {data.albumImage ? (
-              <Image
-                src={data.albumImage}
-                alt={`${data.song} album cover`}
-                fill
-                className="object-cover w-full h-full"
-              />
-            ) : (
-              <div className="flex h-full w-full items-center justify-center bg-foreground/5">
-                <Music2 size={16} className="text-muted" />
-              </div>
-            )}
-          </div>
-
-          <div className="min-w-0 flex-1">
-            <div className="mb-1 flex flex-wrap items-center gap-1 text-[6px] uppercase tracking-[0.08em] text-muted">
-              {data.explicit ? (
-                <span className="rounded-full border border-border/60 px-1 py-0.5">
-                  Explicit
-                </span>
-              ) : null}
-              {data.isPlaying && data.deviceType ? (
-                <span className="inline-flex items-center gap-1 rounded-full border border-border/60 px-1 py-0.5">
-                  <DeviceTypeIcon type={data.deviceType} />
-                  {data.deviceName ?? "Device"}
-                </span>
-              ) : null}
-            </div>
-
-            <h2 className="truncate text-xs font-semibold">
-              {data.songUrl ? (
-                <a
-                  href={data.songUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex max-w-full items-center gap-1 truncate underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/80 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-                >
-                  <span className="truncate">{data.song}</span>
-                  <ExternalLink size={10} className="shrink-0" />
-                </a>
+          <div className="relative flex items-center gap-2">
+            <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-md border border-border/60">
+              {data.albumImage ? (
+                <Image
+                  src={data.albumImage}
+                  alt={`${data.song} album cover`}
+                  fill
+                  className="object-cover w-full h-full"
+                />
               ) : (
-                data.song
+                <div className="flex h-full w-full items-center justify-center bg-foreground/5">
+                  <Music2 size={16} className="text-muted" />
+                </div>
               )}
-            </h2>
+            </div>
 
-            <p className="truncate text-[11px] text-muted">{data.artist}</p>
-          </div>
-        </div>
-
-        {data.isPlaying && data.durationMs && data.progressMs != null ? (
-          <div className="relative mt-2">
-            <div className="mb-1 flex items-center gap-1.5 text-[10px] text-muted">
-              <div className="eq-bars" aria-hidden="true">
-                <span className="eq-bar" />
-                <span className="eq-bar" />
-                <span className="eq-bar" />
+            <div className="min-w-0 flex-1">
+              <div className="mb-1 flex flex-wrap items-center gap-1 text-[6px] uppercase tracking-[0.08em] text-muted">
+                {data.explicit ? (
+                  <span className="rounded-full border border-border/60 px-1 py-0.5">
+                    Explicit
+                  </span>
+                ) : null}
+                {data.isPlaying && data.deviceType ? (
+                  <span className="inline-flex items-center gap-1 rounded-full border border-border/60 px-1 py-0.5">
+                    <DeviceTypeIcon type={data.deviceType} />
+                    {data.deviceName ?? "Device"}
+                  </span>
+                ) : null}
               </div>
-              <span>Caliyor</span>
-            </div>
 
-            <div className="h-1.5 w-full overflow-hidden rounded-full bg-foreground/10">
-              <div
-                className="h-full rounded-full transition-all duration-500"
-                style={{
-                  width: `${progressPercent}%`,
-                  backgroundColor: accent,
-                }}
-              />
-            </div>
+              <h2 className="truncate text-xs font-semibold">
+                {data.songUrl ? (
+                  <a
+                    href={data.songUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex max-w-full items-center gap-1 truncate underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/80 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                  >
+                    <span className="truncate">{data.song}</span>
+                    <ExternalLink size={10} className="shrink-0" />
+                  </a>
+                ) : (
+                  data.song
+                )}
+              </h2>
 
-            <div className="mt-1 flex items-center justify-between text-[10px] text-muted">
-              <span>{formatMs(data.progressMs)}</span>
-              <span>{formatMs(data.durationMs)}</span>
+              <p className="truncate text-[11px] text-muted">{data.artist}</p>
             </div>
           </div>
-        ) : (
-          <div className="mt-2 flex items-center justify-between text-[10px] text-muted">
-            <span>
-              {playedAgo ? `${playedAgo} dinlendi` : "Son dinlenen parca"}
-            </span>
-            {data.durationMs ? <span>{formatMs(data.durationMs)}</span> : null}
-          </div>
-        )}
-      </article>
+
+          {data.isPlaying && data.durationMs && data.progressMs != null ? (
+            <div className="relative mt-2">
+              <div className="mb-1 flex items-center gap-1.5 text-[10px] text-muted">
+                <div className="eq-bars" aria-hidden="true">
+                  <span className="eq-bar" />
+                  <span className="eq-bar" />
+                  <span className="eq-bar" />
+                </div>
+                <span>Caliyor</span>
+              </div>
+
+              <div className="h-1.5 w-full overflow-hidden rounded-full bg-foreground/10">
+                <div
+                  className="h-full rounded-full transition-all duration-500"
+                  style={{
+                    width: `${progressPercent}%`,
+                    backgroundColor: accent,
+                  }}
+                />
+              </div>
+
+              <div className="mt-1 flex items-center justify-between text-[10px] text-muted">
+                <span>{formatMs(data.progressMs)}</span>
+                <span>{formatMs(data.durationMs)}</span>
+              </div>
+            </div>
+          ) : (
+            <div className="mt-2 flex items-center justify-between text-[10px] text-muted">
+              <span>
+                {playedAgo ? `${playedAgo} dinlendi` : "Son dinlenen parca"}
+              </span>
+              {data.durationMs ? (
+                <span>{formatMs(data.durationMs)}</span>
+              ) : null}
+            </div>
+          )}
+        </article>
+      </div>
     </FloatingWrap>
   );
 }

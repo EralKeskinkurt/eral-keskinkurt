@@ -27,9 +27,7 @@ export default function Projects() {
         const data: GithubPinnedRepo[] = await response.json();
         setRepos(data);
       } catch (caught) {
-        if (controller.signal.aborted) {
-          return;
-        }
+        if (controller.signal.aborted) return;
 
         setError(
           caught instanceof Error
@@ -45,17 +43,15 @@ export default function Projects() {
 
     loadRepos();
 
-    return () => {
-      controller.abort();
-    };
+    return () => controller.abort();
   }, []);
 
   const showEmptyState = !loading && !error && repos.length === 0;
 
   return (
-    <div className="flex items-center justify-center border border-border rounded-lg w-full h-full p-12">
-      <div className="flex flex-col md:flex-row items-start w-full h-full justify-start gap-18 overflow-auto p-6">
-        <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-6 w-full">
+    <div className="flex items-center justify-center border border-border rounded-lg w-full h-full p-6 md:p-12 overflow-auto">
+      <div className="w-full max-w-4xl">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
           {error ? (
             <p className="text-sm">{error}</p>
           ) : loading ? (

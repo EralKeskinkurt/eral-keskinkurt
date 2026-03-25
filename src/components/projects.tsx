@@ -1,5 +1,6 @@
 "use client";
 
+import SpotifyAccentBackground from "@/components/spotify-accent-background";
 import { useEffect, useState } from "react";
 import { RepoCard } from "./repo-card";
 import { GithubPinnedRepo } from "@/lib/get-repos";
@@ -49,9 +50,11 @@ export default function Projects() {
   const showEmptyState = !loading && !error && repos.length === 0;
 
   return (
-    <div className="flex items-center justify-center border border-border rounded-lg w-full h-full p-6 md:p-12 overflow-auto">
-      <div className="w-full max-w-4xl">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+    <div className="relative isolate flex h-full w-full items-center justify-center overflow-auto rounded-lg border border-border p-6 md:p-12">
+      <SpotifyAccentBackground className="opacity-70" />
+
+      <div className="relative z-10 w-full max-w-4xl">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6">
           {error ? (
             <p className="text-sm">{error}</p>
           ) : loading ? (

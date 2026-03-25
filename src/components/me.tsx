@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import SpotifyAccentBackground from "@/components/spotify-accent-background";
 
 export default function Me() {
   const techStack = [
@@ -96,10 +97,12 @@ export default function Me() {
   ];
 
   return (
-    <div className="flex items-start justify-center border border-border rounded-lg w-full h-full p-6 md:p-12">
+    <div className="relative isolate flex h-full w-full items-start justify-center overflow-hidden rounded-lg border border-border p-6 md:p-12">
+      <SpotifyAccentBackground className="opacity-70" />
+
       <div className="flex flex-col md:flex-row items-center md:items-start w-full justify-start gap-8 md:gap-16 overflow-hidden">
         {/* Left side */}
-        <div className="flex flex-col items-center gap-4">
+        <div className="relative z-10 flex flex-col items-center gap-4">
           <div className="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden border border-border">
             <Image
               src="/eralkeskinkurt.png"
@@ -136,7 +139,7 @@ export default function Me() {
         </div>
 
         {/* Right side */}
-        <div className="flex flex-col gap-6 max-w-xl text-center md:text-left">
+        <div className="relative z-10 flex max-w-xl flex-col gap-6 text-center md:text-left">
           <div>
             <h1 className="text-xl sm:text-2xl md:text-3xl font-bold">
               Eral Keskinkurt

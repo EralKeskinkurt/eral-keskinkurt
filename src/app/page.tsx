@@ -20,9 +20,9 @@ export default function Home() {
   };
 
   return (
-    <div className="flex flex-col md:flex-row w-full min-h-screen items-center justify-center gap-6 md:gap-10 p-4 md:p-10 overflow-auto">
+    <div className="relative isolate flex w-full min-h-screen flex-col items-center justify-center gap-6 overflow-auto p-4 md:flex-row md:gap-10 md:p-10">
       {/* Cards */}
-      <div className="relative w-full max-w-4xl md:w-225 h-[80vh] md:h-[85vh] overflow-hidden p-1 rounded-2xl">
+      <div className="relative z-10 w-full max-w-4xl overflow-hidden rounded-2xl p-1 h-[80vh] md:w-225 md:h-[85vh]">
         <div
           className="flex flex-col w-full h-full transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]"
           style={{
@@ -41,7 +41,9 @@ export default function Home() {
       </div>
 
       {/* Navigation */}
-      <NavigationBar cards={cards} index={index} setIndex={setIndex} />
+      <div className="relative z-10">
+        <NavigationBar cards={cards} index={index} setIndex={setIndex} />
+      </div>
     </div>
   );
 }

@@ -12,32 +12,7 @@ import {
 import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 import useSWR from "swr";
-
-type NowPlayingResponse = {
-  isPlaying: boolean;
-  isRecent?: boolean;
-  song?: string;
-  artist?: string;
-  album?: string | null;
-  albumImage?: string | null;
-  accentColor?: string | null;
-  songUrl?: string | null;
-  explicit?: boolean;
-  deviceName?: string | null;
-  deviceType?: string | null;
-  progressMs?: number | null;
-  durationMs?: number | null;
-  playedAt?: string | null;
-};
-
-const fetcher = async (url: string): Promise<NowPlayingResponse> => {
-  const response = await fetch(url);
-  if (!response.ok) {
-    throw new Error("Failed to fetch now playing data");
-  }
-
-  return response.json();
-};
+import { nowPlayingFetcher } from "@/lib/now-playing";
 
 function formatMs(value: number) {
   const totalSec = Math.floor(value / 1000);
@@ -127,12 +102,16 @@ export default function NowPlaying() {
     };
   }, []);
 
-  const { data, error, isLoading } = useSWR("/api/now-playing", fetcher, {
-    refreshInterval: (latestData) => (latestData?.isPlaying ? 5000 : 15000),
-    refreshWhenHidden: false,
-    refreshWhenOffline: false,
-    keepPreviousData: true,
-  });
+  const { data, error, isLoading } = useSWR(
+    "/api/now-playing",
+    nowPlayingFetcher,
+    {
+      refreshInterval: (latestData) => (latestData?.isPlaying ? 5000 : 15000),
+      refreshWhenHidden: false,
+      refreshWhenOffline: false,
+      keepPreviousData: true,
+    },
+  );
 
   const progressPercent = useMemo(() => {
     if (!data?.isPlaying || !data.durationMs || data.progressMs == null)

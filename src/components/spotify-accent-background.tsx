@@ -20,9 +20,11 @@ export default function SpotifyAccentBackground({
     refreshWhenOffline: false,
     keepPreviousData: true,
     onSuccess: (data) => {
-      if (data.song && data.accentColor) {
+      const accentColor = data.song ? (data.accentColor ?? null) : null;
+
+      if (accentColor) {
         setLastAccent((current) =>
-          current === data.accentColor ? current : data.accentColor,
+          current === accentColor ? current : accentColor,
         );
       }
     },

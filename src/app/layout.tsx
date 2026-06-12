@@ -18,7 +18,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className="min-h-screen bg-background">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <div className="fixed top-4 left-8 right-5 z-50 flex items-center justify-between">
+          <div className="fixed top-4 left-4 right-4 md:left-8 md:right-5 z-50 flex items-center justify-between">
             <NowPlaying />
             <ThemeToggle />
           </div>

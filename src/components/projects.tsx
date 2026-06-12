@@ -53,7 +53,7 @@ export default function Projects() {
     <div className="relative isolate flex h-full w-full items-center justify-center overflow-auto rounded-lg border border-border p-6 md:p-12">
       <SpotifyAccentBackground className="opacity-70" />
 
-      <div className="relative z-10 w-full max-w-4xl">
+      <div className="relative z-10 w-full max-w-4xl pt-10 pb-2 md:pt-2">
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6">
           {error ? (
             <p className="text-sm">{error}</p>

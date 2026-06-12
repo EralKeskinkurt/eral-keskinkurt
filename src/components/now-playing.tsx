@@ -170,10 +170,9 @@ export default function NowPlaying() {
   const accent = data.accentColor ?? "var(--color-accent)";
   return (
     <FloatingWrap>
-      <div className="sm:hidden flex items-center gap-2 rounded-full border border-border/70 bg-background/85 px-3 py-1.5 text-xs shadow-lg backdrop-blur-sm max-w-[180px]">
-        <Music2 size={12} />
+      <div className="sm:hidden flex items-center gap-1.5 rounded-full border border-border/70 bg-background/85 px-3 py-1.5 text-xs shadow-lg backdrop-blur-sm max-w-[200px]">
+        <Music2 size={12} className="shrink-0" />
         <span className="truncate">{data.song}</span>
-        <span className="text-muted">çalıyor</span>
       </div>
       <div className="hidden sm:block">
         <article

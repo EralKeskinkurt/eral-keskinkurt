@@ -20,9 +20,9 @@ export default function Home() {
   };
 
   return (
-    <div className="relative isolate flex w-full min-h-screen flex-col items-center justify-center gap-6 overflow-auto p-4 md:flex-row md:gap-10 md:p-10">
+    <div className="relative isolate flex w-full min-h-screen flex-col items-center justify-center gap-4 overflow-auto px-4 py-6 md:flex-row md:gap-10 md:px-10 md:py-10">
       {/* Cards */}
-      <div className="relative z-10 w-full max-w-4xl overflow-hidden rounded-2xl p-1 h-[80vh] md:w-225 md:h-[85vh]">
+      <div className="relative z-10 w-full max-w-4xl overflow-hidden rounded-2xl p-1 h-[75vh] md:w-225 md:h-[85vh]">
         <div
           className="flex flex-col w-full h-full transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]"
           style={{
@@ -32,7 +32,7 @@ export default function Home() {
           {cards.map((card) => (
             <div
               key={card}
-              className="w-full h-full shrink-0 flex items-center justify-center p-2 md:p-4"
+              className="w-full h-full shrink-0 flex items-center justify-center p-1 md:p-4"
             >
               {whichCard(card - 1)}
             </div>
@@ -41,7 +41,7 @@ export default function Home() {
       </div>
 
       {/* Navigation */}
-      <div className="relative z-10">
+      <div className="relative z-10 flex-shrink-0 w-full flex justify-center md:w-auto md:block">
         <NavigationBar cards={cards} index={index} setIndex={setIndex} />
       </div>
     </div>

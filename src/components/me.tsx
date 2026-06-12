@@ -97,13 +97,13 @@ export default function Me() {
   ];
 
   return (
-    <div className="relative isolate flex h-full w-full items-start justify-center overflow-hidden rounded-lg border border-border p-6 md:p-12">
+    <div className="relative isolate flex h-full w-full items-start justify-center overflow-hidden rounded-lg border border-border p-4 sm:p-6 md:p-12">
       <SpotifyAccentBackground className="opacity-70" />
 
-      <div className="flex flex-col md:flex-row items-center md:items-start w-full justify-start gap-8 md:gap-16 overflow-hidden">
+      <div className="flex flex-col md:flex-row items-center md:items-start w-full justify-start gap-6 md:gap-16 overflow-auto">
         {/* Left side */}
-        <div className="relative z-10 flex flex-col items-center gap-4">
-          <div className="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden border border-border">
+        <div className="relative z-10 flex flex-col items-center gap-3 shrink-0">
+          <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-36 md:h-36 rounded-full overflow-hidden border border-border">
             <Image
               src="/eralkeskinkurt.png"
               width={500}
@@ -113,13 +113,13 @@ export default function Me() {
             />
           </div>
 
-          <div className="text-sm text-foreground/70 text-center">
+          <div className="text-xs sm:text-sm text-foreground/70 text-center">
             <p>Full Stack Developer</p>
             <p>Turkey</p>
           </div>
 
           {/* Socials */}
-          <div className="flex md:flex-col items-center gap-5 md:gap-4 mt-4 md:mt-10 flex-wrap justify-center">
+          <div className="flex md:flex-col items-center gap-5 md:gap-4 mt-2 md:mt-10 flex-wrap justify-center">
             {socials.map((social, i) => {
               const Icon = social.icon;
 
@@ -129,7 +129,7 @@ export default function Me() {
                   href={social.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`${social.color} hover:scale-110 transition`}
+                  className={`${social.color} hover:scale-110 transition p-1`}
                 >
                   <Icon size={24} />
                 </Link>
@@ -139,7 +139,7 @@ export default function Me() {
         </div>
 
         {/* Right side */}
-        <div className="relative z-10 flex max-w-xl flex-col gap-6 text-center md:text-left">
+        <div className="relative z-10 flex max-w-xl flex-col gap-4 text-center md:text-left min-w-0">
           <div>
             <h1 className="text-xl sm:text-2xl md:text-3xl font-bold">
               Eral Keskinkurt
@@ -149,20 +149,20 @@ export default function Me() {
             </p>
           </div>
 
-          <p className="text-sm md:text-base text-foreground/70 mt-1">
-            I’m a full-stack developer focused on creating clean, scalable and
+          <p className="text-sm md:text-base text-foreground/70">
+            I&apos;m a full-stack developer focused on creating clean, scalable and
             maintainable software. I enjoy designing backend architectures, APIs
             and modern frontend interfaces using modern web technologies.
           </p>
 
-          <p className="text-sm md:text-base text-foreground/70 mt-1">
+          <p className="text-sm md:text-base text-foreground/70">
             Currently working with <b>Next.js</b>, <b>NestJS</b>,{" "}
             <b>TypeScript</b> and <b>MySQL</b>. I enjoy building complete
             systems from database design to UI.
           </p>
 
           {/* Tech stack */}
-          <div className="flex flex-wrap gap-2 text-xs sm:text-sm mt-2">
+          <div className="flex flex-wrap gap-2 text-xs sm:text-sm mt-1 justify-center md:justify-start">
             {techStack.map((tech) => (
               <span
                 key={tech.name}

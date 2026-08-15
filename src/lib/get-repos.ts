@@ -15,7 +15,7 @@ export async function getPinnedRepos(): Promise<GithubPinnedRepo[]> {
   const res = await fetch("https://api.github.com/graphql", {
     method: "POST",
     headers: {
-      Authorization: `Bearer ${process.env.NEXT_PUBLIC_GITHUB_PERSONAL_ACCESS_TOKEN}`,
+      Authorization: `Bearer ${process.env.GITHUB_PERSONAL_ACCESS_TOKEN}`,
       "Content-Type": "application/json",
     },
     body: JSON.stringify({

@@ -145,20 +145,33 @@ export default function Me() {
               Eral Keskinkurt
             </h1>
             <p className="text-sm md:text-base text-foreground/70 mt-1">
-              Building modern web applications and scalable backend systems.
+              Full-stack developer building end-to-end products, from data
+              model to shipped UI.
             </p>
           </div>
 
           <p className="text-sm md:text-base text-foreground/70">
-            I&apos;m a full-stack developer focused on creating clean, scalable and
-            maintainable software. I enjoy designing backend architectures, APIs
-            and modern frontend interfaces using modern web technologies.
+            I&apos;m a full-stack developer who likes owning a product
+            end-to-end: designing the database schema, building the API on
+            top of it, and shipping the interface that sits on top of that.
+            Most recently I built{" "}
+            <a
+              href="https://github.com/EralKeskinkurt/autorecord-frontend"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-foreground underline decoration-foreground/30 underline-offset-2 transition hover:decoration-foreground"
+            >
+              AutoRecord
+            </a>
+            , a SaaS for tracking vehicle service history, with a Next.js
+            frontend and a NestJS + Prisma + PostgreSQL backend.
           </p>
 
           <p className="text-sm md:text-base text-foreground/70">
-            Currently working with <b>Next.js</b>, <b>NestJS</b>,{" "}
-            <b>TypeScript</b> and <b>MySQL</b>. I enjoy building complete
-            systems from database design to UI.
+            Day-to-day I work with <b>Next.js</b>, <b>NestJS</b>,{" "}
+            <b>TypeScript</b> and <b>MySQL</b>. Outside of that I like
+            exploring new ground &mdash; Vue-based frontend experiments and
+            small C++ games built with Raylib.
           </p>
 
           {/* Tech stack */}

@@ -1,8 +1,8 @@
 import { Star, GitFork } from "lucide-react";
-import { GithubPinnedRepo } from "@/lib/get-repos";
+import { GithubRepo } from "@/lib/get-repos";
 
 type Props = {
-  repo: GithubPinnedRepo;
+  repo: GithubRepo;
 };
 
 export function RepoCard({ repo }: Props) {

@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
 
-import { getPinnedRepos } from "@/lib/get-repos";
+import { getPublicRepos } from "@/lib/get-repos";
 
 export async function GET() {
-  const repos = await getPinnedRepos();
+  const repos = await getPublicRepos();
   return NextResponse.json(repos);
 }

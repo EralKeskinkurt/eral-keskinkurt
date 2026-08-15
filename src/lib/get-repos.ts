@@ -1,4 +1,4 @@
-export type GithubPinnedRepo = {
+export type GithubRepo = {
   id: string;
   name: string;
   description: string | null;
@@ -11,7 +11,7 @@ export type GithubPinnedRepo = {
   } | null;
 };
 
-export async function getPinnedRepos(): Promise<GithubPinnedRepo[]> {
+export async function getPublicRepos(): Promise<GithubRepo[]> {
   const res = await fetch("https://api.github.com/graphql", {
     method: "POST",
     headers: {
@@ -22,19 +22,24 @@ export async function getPinnedRepos(): Promise<GithubPinnedRepo[]> {
       query: `
       {
         viewer {
-          pinnedItems(first: 6, types: REPOSITORY) {
+          login
+          repositories(
+            first: 100
+            privacy: PUBLIC
+            ownerAffiliations: OWNER
+            isFork: false
+            orderBy: { field: UPDATED_AT, direction: DESC }
+          ) {
             nodes {
-              ... on Repository {
-                id
+              id
+              name
+              description
+              url
+              stargazerCount
+              forkCount
+              primaryLanguage {
                 name
-                description
-                url
-                stargazerCount
-                forkCount
-                primaryLanguage {
-                  name
-                  color
-                }
+                color
               }
             }
           }
@@ -52,5 +57,10 @@ export async function getPinnedRepos(): Promise<GithubPinnedRepo[]> {
     return [];
   }
 
-  return json.data.viewer.pinnedItems.nodes;
+  const { login, repositories } = json.data.viewer;
+
+  // The profile README repo (same name as the username) isn't a project.
+  return repositories.nodes.filter(
+    (repo: GithubRepo) => repo.name.toLowerCase() !== login.toLowerCase(),
+  );
 }

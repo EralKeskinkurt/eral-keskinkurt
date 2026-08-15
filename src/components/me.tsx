@@ -44,6 +44,12 @@ export default function Me() {
       border: "border-orange-500/20",
     },
     {
+      name: "PostgreSQL",
+      text: "text-sky-600",
+      bg: "bg-sky-600/10",
+      border: "border-sky-600/20",
+    },
+    {
       name: "Tailwind",
       text: "text-cyan-500",
       bg: "bg-cyan-500/10",
@@ -54,6 +60,24 @@ export default function Me() {
       text: "text-green-600",
       bg: "bg-green-600/10",
       border: "border-green-600/20",
+    },
+    {
+      name: "Vue",
+      text: "text-emerald-500",
+      bg: "bg-emerald-500/10",
+      border: "border-emerald-500/20",
+    },
+    {
+      name: "C++",
+      text: "text-violet-500",
+      bg: "bg-violet-500/10",
+      border: "border-violet-500/20",
+    },
+    {
+      name: "Astro",
+      text: "text-fuchsia-500",
+      bg: "bg-fuchsia-500/10",
+      border: "border-fuchsia-500/20",
     },
     {
       name: "REST API",
@@ -154,24 +178,13 @@ export default function Me() {
             I&apos;m a full-stack developer who likes owning a product
             end-to-end: designing the database schema, building the API on
             top of it, and shipping the interface that sits on top of that.
-            Most recently I built{" "}
-            <a
-              href="https://github.com/EralKeskinkurt/autorecord-frontend"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-medium text-foreground underline decoration-foreground/30 underline-offset-2 transition hover:decoration-foreground"
-            >
-              AutoRecord
-            </a>
-            , a SaaS for tracking vehicle service history, with a Next.js
-            frontend and a NestJS + Prisma + PostgreSQL backend.
+            I enjoy turning a rough idea into a working, maintainable system
+            from the ground up.
           </p>
 
           <p className="text-sm md:text-base text-foreground/70">
-            Day-to-day I work with <b>Next.js</b>, <b>NestJS</b>,{" "}
-            <b>TypeScript</b> and <b>MySQL</b>. Outside of that I like
-            exploring new ground &mdash; Vue-based frontend experiments and
-            small C++ games built with Raylib.
+            Below are the languages and tools I currently work with and keep
+            up with day to day.
           </p>
 
           {/* Tech stack */}
